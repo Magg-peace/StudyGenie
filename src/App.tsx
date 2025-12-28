@@ -67,20 +67,6 @@ export default function App() {
     return 'age-adult';
   };
 
-  // Background video for different sections
-  const getBackgroundVideo = (tab: string) => {
-    const videos = {
-      dashboard: 'learning-dashboard-bg.mp4',
-      upload: 'document-processing-bg.mp4',
-      quiz: 'brain-thinking-bg.mp4',
-      flashcards: 'memory-cards-bg.mp4',
-      tutor: 'ai-conversation-bg.mp4',
-      ranking: 'competition-bg.mp4',
-      planner: 'calendar-planning-bg.mp4'
-    };
-    return videos[tab as keyof typeof videos] || videos.dashboard;
-  };
-
   // Show authentication flow if not authenticated
   if (!isAuthenticated) {
     return (
@@ -361,7 +347,7 @@ export default function App() {
             onClick={() => setActiveTab('tutor')}
           >
             <span className="text-2xl">
-              {userProfile?.gender === 'girl' || userProfile?.age <= 14 ? '👸🏻' : '🤖'}
+              {userProfile?.gender === 'girl' || (userProfile?.age && userProfile.age <= 14) ? '👸🏻' : '🤖'}
             </span>
           </motion.button>
           
